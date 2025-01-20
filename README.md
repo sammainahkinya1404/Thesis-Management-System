@@ -31,7 +31,7 @@ The student dashboard allows students to:
 - View their submitted theses and their statuses.
 - Track progress and view grades/feedback.
 
-![Student Dashboard](assets/students_dashboard.png)
+![Student Dashboard](assets/students_dashboard.PNG)
 
 ---
 
@@ -39,7 +39,7 @@ The student dashboard allows students to:
 
 Students can submit a new thesis and assign it to a teacher from a dropdown list of available teachers.
 
-![Submit Thesis](assets/submit_thesis.png)
+![Submit Thesis](assets/submit_thesis.PNG)
 
 ---
 
@@ -50,7 +50,7 @@ The teacher dashboard allows teachers to:
 - Grade approved theses and provide feedback.
 - Track theses assigned to them.
 
-![Teacher Dashboard](assets/teachers_dashboard.png)
+![Teacher Dashboard](assets/teachers_dashboard.PNG)
 
 ---
 
@@ -61,8 +61,10 @@ The teacher dashboard allows teachers to:
    git clone https://github.com/sammainahkinya1404/Thesis-Management-System.git
 
 2. Install dependencies:
-   ``` pip install -r requirements.txt
+   ``` 
+    pip install -r requirements.txt
 3. Run the server:
 ````
   python manage.py runserver
+   
    Access the system at http://127.0.0.1:8000.
