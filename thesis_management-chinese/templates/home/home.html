@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}首页{% endblock %}
+{% block content %}
+<h1>欢迎使用论文管理系统</h1>
+<p>
+    <a href="{% url 'register' %}" class="btn btn-primary">注册</a>
+    <a href="{% url 'login' %}" class="btn btn-secondary">登录</a>
+</p>
+{% endblock %}

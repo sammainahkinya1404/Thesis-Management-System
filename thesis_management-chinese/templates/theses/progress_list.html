@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}进度{% endblock %}
+{% block content %}
+<h2>"{{ thesis.title }}"的进度</h2>
+<a href="{% url 'progress_add' thesis.id %}" class="btn btn-primary mb-3">添加里程碑</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>里程碑</th>
+            <th>截止日期</th>
+            <th>状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in progress %}
+        <tr>
+            <td>{{ p.milestone }}</td>
+            <td>{{ p.due_date }}</td>
+            <td>{{ p.completed|yesno:"已完成,待定" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}论文进度{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>"{{ thesis.title }}"的进度</h2>
+    <ul>
+        {% for milestone in progress %}
+            <li>
+                <strong>{{ milestone.milestone }}</strong> - 
+                截止日期: {{ milestone.due_date }} - 
+                状态: 
+                <span class="{% if milestone.completed %}text-success{% else %}text-danger{% endif %}">
+                    {% if milestone.completed %}已完成{% else %}待完成{% endif %}
+                </span>
+            </li>
+        
+    </ul>
+</div>
+{% endblock %}

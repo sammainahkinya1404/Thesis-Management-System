@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}学生仪表板{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>欢迎, {{ user.username }}!</h2>
+
+    <h3>你的论文</h3>
+    {% for thesis in theses %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>{{ thesis.title }}</strong> - 状态: {{ thesis.status }}
+            </div>
+            <div class="card-body">
+                <p>{{ thesis.abstract }}</p>
+                {% if thesis.grade %}
+                    <h5>评分: <span class="text-success">{{ thesis.grade.score }}</span></h5>
+                    <p>反馈: {{ thesis.grade.feedback }}</p>
+                {% else %}
+                    <h5 class="text-warning">尚未评分</h5>
+                {% endif %}
+                <h5>进度</h5>
+                <ul>
+                    {% for progress in thesis.progress.all %}
+                        <li>
+                            {{ progress.milestone }} 
+                            - 截止日期: {{ progress.due_date }}
+                            - 状态: 
+                            <span class="{% if progress.completed %}text-success{% else %}text-warning{% endif %}">
+                                {% if progress.completed %}已完成{% else %}待定{% endif %}
+                            </span>
+                        </li>
+                    {% empty %}
+                        <li>尚未设置进度里程碑。</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+
+    <h3>操作</h3>
+    <div class="mb-3">
+        <a href="{% url 'thesis_upload' %}" class="btn btn-success">提交新论文</a>
+    </div>
+
+    <h3>可用教师</h3>
+    <ul>
+        {% for teacher in teachers %}
+            <li>{{ teacher.username }} ({{ teacher.email }})</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

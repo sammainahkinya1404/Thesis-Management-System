@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}教师仪表板{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>欢迎, {{ user.username }}!</h2>
+
+    <h3>待审核的论文</h3>
+    {% if pending_theses %}
+        <ul>
+            {% for thesis in pending_theses %}
+                <li>
+                    <strong>{{ thesis.title }}</strong> 由 {{ thesis.student.username }} 提交
+                    <a href="{% url 'thesis_feedback' thesis.id %}" class="btn btn-primary btn-sm">审核</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>没有待审核的论文。</p>
+    {% endif %}
+
+    <h3>待评分的已批准论文</h3>
+    {% if approved_theses %}
+        <ul>
+            {% for thesis in approved_theses %}
+                <li>
+                    <strong>{{ thesis.title }}</strong> 由 {{ thesis.student.username }} 提交
+                    <a href="{% url 'grade_thesis' thesis.id %}" class="btn btn-success btn-sm">评分</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>没有待评分的论文。</p>
+    {% endif %}
+
+    <h3>已评分的论文</h3>
+    {% if graded_theses %}
+        <ul>
+            {% for thesis in graded_theses %}
+                <li>
+                    <strong>{{ thesis.title }}</strong> 由 {{ thesis.student.username }} 提交
+                    - 评分: <span class="text-success">{{ thesis.grade.score }}</span>
+                    <p>反馈: {{ thesis.grade.feedback }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>没有已评分的论文。</p>
+    {% endif %}
+</div>
+{% endblock %}

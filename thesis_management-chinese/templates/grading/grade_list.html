@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}评分论文{% endblock %}
+{% block content %}
+<h2>准备评分的论文</h2>
+<ul>
+    {% for thesis in theses %}
+        <li>
+            <strong>{{ thesis.title }}</strong> 作者 {{ thesis.student.username }}
+            <a href="{% url 'grade_thesis' thesis.id %}" class="btn btn-sm btn-primary">评分</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

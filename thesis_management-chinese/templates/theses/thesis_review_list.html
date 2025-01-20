@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}审查论文{% endblock %}
+{% block content %}
+<h2>待审查的论文</h2>
+<ul>
+    {% for thesis in theses %}
+        <li>
+            <strong>{{ thesis.title }}</strong> 作者：{{ thesis.student.username }}
+            <a href="{% url 'thesis_feedback' thesis.id %}" class="btn btn-sm btn-primary">审查</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
