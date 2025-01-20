@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Progress{% endblock %}
+{% block content %}
+<h2>Progress of "{{ thesis.title }}"</h2>
+<a href="{% url 'progress_add' thesis.id %}" class="btn btn-primary mb-3">Add Milestone</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Milestone</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in progress %}
+        <tr>
+            <td>{{ p.milestone }}</td>
+            <td>{{ p.due_date }}</td>
+            <td>{{ p.completed|yesno:"Completed,Pending" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

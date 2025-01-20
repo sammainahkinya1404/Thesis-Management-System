@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Welcome, Admin!</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{% url 'dashboard' %}" class="btn btn-info btn-block">Manage All Theses</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'dashboard' %}" class="btn btn-primary btn-block">Monitor Grades</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

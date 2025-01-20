@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Welcome, {{ user.username }}!</h2>
+
+    <h3>Pending Theses</h3>
+    {% if pending_theses %}
+        <ul>
+            {% for thesis in pending_theses %}
+                <li>
+                    <strong>{{ thesis.title }}</strong> submitted by {{ thesis.student.username }}
+                    <a href="{% url 'thesis_feedback' thesis.id %}" class="btn btn-primary btn-sm">Review</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pending theses.</p>
+    {% endif %}
+
+    <h3>Approved Theses Pending Grading</h3>
+    {% if approved_theses %}
+        <ul>
+            {% for thesis in approved_theses %}
+                <li>
+                    <strong>{{ thesis.title }}</strong> submitted by {{ thesis.student.username }}
+                    <a href="{% url 'grade_thesis' thesis.id %}" class="btn btn-success btn-sm">Grade</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No theses pending grading.</p>
+    {% endif %}
+
+    <h3>Graded Theses</h3>
+    {% if graded_theses %}
+        <ul>
+            {% for thesis in graded_theses %}
+                <li>
+                    <strong>{{ thesis.title }}</strong> submitted by {{ thesis.student.username }}
+                    - Grade: <span class="text-success">{{ thesis.grade.score }}</span>
+                    <p>Feedback: {{ thesis.grade.feedback }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No graded theses.</p>
+    {% endif %}
+</div>
+{% endblock %}

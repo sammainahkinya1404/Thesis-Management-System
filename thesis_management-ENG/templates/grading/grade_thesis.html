@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Grade Thesis{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Grade Thesis: "{{ thesis.title }}"</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Submit Grade</button>
+    </form>
+</div>
+{% endblock %}

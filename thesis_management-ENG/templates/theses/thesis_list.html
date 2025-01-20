@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Thesis{% endblock %}
+{% block content %}
+<h2>Your Theses</h2>
+<a href="{% url 'thesis_upload' %}" class="btn btn-primary mb-3">Upload New Thesis</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Submission Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for thesis in theses %}
+        <tr>
+            <td>{{ thesis.title }}</td>
+            <td>{{ thesis.status }}</td>
+            <td>{{ thesis.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

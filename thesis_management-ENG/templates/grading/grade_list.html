@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Grading Theses{% endblock %}
+{% block content %}
+<h2>Theses Ready for Grading</h2>
+<ul>
+    {% for thesis in theses %}
+        <li>
+            <strong>{{ thesis.title }}</strong> by {{ thesis.student.username }}
+            <a href="{% url 'grade_thesis' thesis.id %}" class="btn btn-sm btn-primary">Grade</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Welcome, {{ user.username }}!</h2>
+
+    <h3>Your Theses</h3>
+    {% for thesis in theses %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>{{ thesis.title }}</strong> - Status: {{ thesis.status }}
+            </div>
+            <div class="card-body">
+                <p>{{ thesis.abstract }}</p>
+                {% if thesis.grade %}
+                    <h5>Grade: <span class="text-success">{{ thesis.grade.score }}</span></h5>
+                    <p>Feedback: {{ thesis.grade.feedback }}</p>
+                {% else %}
+                    <h5 class="text-warning">Not Graded Yet</h5>
+                {% endif %}
+                <h5>Progress</h5>
+                <ul>
+                    {% for progress in thesis.progress.all %}
+                        <li>
+                            {{ progress.milestone }} 
+                            - Due Date: {{ progress.due_date }}
+                            - Status: 
+                            <span class="{% if progress.completed %}text-success{% else %}text-warning{% endif %}">
+                                {% if progress.completed %}Completed{% else %}Pending{% endif %}
+                            </span>
+                        </li>
+                    {% empty %}
+                        <li>No progress milestones set yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+
+    <h3>Actions</h3>
+    <div class="mb-3">
+        <a href="{% url 'thesis_upload' %}" class="btn btn-success">Submit New Thesis</a>
+    </div>
+
+    <h3>Available Teachers</h3>
+    <ul>
+        {% for teacher in teachers %}
+            <li>{{ teacher.username }} ({{ teacher.email }})</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
