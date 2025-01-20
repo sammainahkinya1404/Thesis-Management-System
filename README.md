@@ -31,7 +31,7 @@ The student dashboard allows students to:
 - View their submitted theses and their statuses.
 - Track progress and view grades/feedback.
 
-![Student Dashboard](assets/students_dashboard.PNG)
+![Student Dashboard](assets/Students_dashboard.PNG)
 
 ---
 
@@ -67,4 +67,4 @@ The teacher dashboard allows teachers to:
 ````
   python manage.py runserver
    
-   Access the system at http://127.0.0.1:8000.
+    http://127.0.0.1:8000.
